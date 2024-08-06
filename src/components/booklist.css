@@ -1,0 +1,47 @@
+.book-list {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .book-list .filter {
+    margin-bottom: 20px;
+  }
+
+  .book-card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* Adjusted for better fit */
+    gap: 20px;
+    padding: 20px; /* Added padding to ensure cards do not touch container edges */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto; /* Center container horizontally */
+    box-sizing: border-box; /* Ensure padding and border are included in width */
+  }
+  
+  .book-list .no-books {
+    font-size: 18px;
+    color: #888;
+    text-align: center;
+  }
+  
+  .book-list .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  @media (max-width: 1200px) {
+    .book-card-container {
+      grid-template-columns: repeat(2, 1fr); /* 2 cards per row for medium screens */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .book-card-container {
+      grid-template-columns: 1fr; /* 1 card per row for small screens */
+    }
+  }
