@@ -6,6 +6,7 @@ import './booklist.css';
 import { setBooks, setBooksError, setBooksLoading } from '../redux/AllDataSlice';
 import PaginationComponent from './PaginationCoponent';
 import axios from 'axios';
+import AddBookModal from './AddBookModal';
 
 const API_URL = "http://64.227.142.191:8080/application-test-v1.1/books";
 
@@ -20,9 +21,8 @@ const BookList = () => {
             dispatch(setBooksLoading());
             try {
                 const response = await axios.get(`${API_URL}?title=`);
-                // Ensure the response data contains 'data' array
                 if (response.data && Array.isArray(response.data.data)) {
-                    dispatch(setBooks(response.data.data));  // Dispatch the books data
+                    dispatch(setBooks(response.data.data));
                 } else {
                     throw new Error("Invalid data format");
                 }
@@ -42,7 +42,6 @@ const BookList = () => {
         return <div>Error loading books</div>;
     }
 
-    // Ensure items is an array
     const booksArray = Array.isArray(items) ? items : [];
 
     const indexOfLastBook = currentPage * itemsPerPage;
@@ -53,8 +52,9 @@ const BookList = () => {
 
     return (
         <div className="book-list">
-            <div style={{display:"flex",justifyContent:"start",width:"90%"}}>
+            <div style={{display:"flex", justifyContent:"space-between", width:"90%"}}>
                 <Filter />
+                <AddBookModal /> {/* Include the modal component here */}
             </div>
             <div className="book-card-container">
                 {currentBooks.length > 0 ? (
